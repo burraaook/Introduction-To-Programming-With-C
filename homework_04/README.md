@@ -6,5 +6,5 @@
 2- Reads number from command prompt, Prints if the input number is armstrong, palindrome, both or neither. 
 - void check_armstrong_palindrome();  
   
-3- Reads number from command prompt, Prints the sum of primes in the interval which is asked to user.
+3- Reads numbers from command prompt, Prints the sum of primes in the given interval.
 - void print_sum_of_primes();   
