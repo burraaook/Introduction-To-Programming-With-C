@@ -5,4 +5,3 @@
 - void print_puzzle(int puzzle[][N]);  
 - int movement(towards direction, int loc_x, int loc_y, int puzzle[][N]);  
 - bool is_it_solved(int puzzle[][N]);  
-
