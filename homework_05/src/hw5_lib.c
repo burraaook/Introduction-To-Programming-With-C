@@ -3,34 +3,13 @@
 **
 ** The source file implementing library functions.
 **
-** Author: Yakup Genc. (c) 2018-2021
-**
-** Revision: 2021.04.02.23.55
+** Author: Burak Kocausta
 ** 
 */
 
 #include <stdio.h>
 #include "hw5_lib.h"
 #include <math.h>
-
-/*------------------------HELPER FUNCTIONS DECLARED------------------------*/
-void scan_3polynomial(double *a3, double *a2, double *a1, double *a0);
-void scan_coefficient(double *a);
-void scan_operator(char *op);
-void discard();
-void multiply_polynomials(double* a3, double* a2, double* a1, double* a0, double* b3, double* b2, double* b1, double b0);
-void scan_4d_vectors(double* n0, double* n1, double* n2, double* n3);
-void scan_double_num(double *x, int i, int j);
-void scan_5_votes(int *a, int *b, int *c, int *d, int *e, int *seat);
-void scan_positive_int(int *num);
-int find_max(int a, int b, int c, int d, int e);
-void order_2_point(double *x1,double *y1, double *x2, double *y2);
-int find_region(double x, double y);
-void swap_points(double *x1, double *y1, double *x2, double *y2);
-void order_w_slope(double *x1, double *y1, double *x2, double *y2, int reg);
-void scan_uchar(unsigned char *number);
-void assign_bits(char* b, unsigned char* num);
-/*------------------------HELPER FUNCTIONS DECLARED------------------------*/
 
 /*-------------------------------------------- PART I --------------------------------------------*/
 void operate_polynomials  (double* a3, double* a2, double* a1, double* a0, double* b3, double* b2, double* b1, double* b0, char op)

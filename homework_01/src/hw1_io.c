@@ -3,9 +3,7 @@
 **
 ** The source file implementing output functions.
 **
-** Author: Yakup Genc. (c) 2018-2021
-**
-** Revision: 2021.03.03.20.16
+** Author: Burak Kocausta
 ** 
 */
 
@@ -32,11 +30,9 @@ void write_polynomial3(double a0, double a1, double a2, double a3)
 										
 	num_of_coeff = 4;
 	
-
 	for(i = 0,j = num_of_coeff - 1; i < num_of_coeff; i++,j--){
 		/* loop for printing the polynomial function's coefficients one by one.*/
-		
-													
+											
 		if(i == num_of_coeff - 1){
 			/* condition prevents printing "x^0". */
 
@@ -61,30 +57,22 @@ void write_polynomial3(double a0, double a1, double a2, double a3)
 					/* condition prevents printing "x^1" instead of "x". */
 					printf("+%gx", coeffs[i]);
 				}
-
 				else{
-
 					if(i == 0){
 						/* if first coefficent is positive prevents printing "+" before number. */
 						printf("%gx^%d", coeffs[i],j);
 					}
 					else{
 						printf("+%gx^%d", coeffs[i],j);
-					}
-						
+					}	
 				}
-
 			}
-
 			else{	/* condition prevents printing "+1.0x" instead of "x". */
-			
 				if(j == 1){
 					/* condition prevents printing "x^1" instead of "x". */
 					printf("+x");
 				}
-
 				else{
-
 					if(i == 0){
 						/* if first coefficent is positive prevents printing "+" before number. */
 						printf("x^%d", j);
@@ -92,17 +80,14 @@ void write_polynomial3(double a0, double a1, double a2, double a3)
 					else{
 						printf("+x^%d", j);
 					}
-					
 				}
 				
 			}
 
 		}
 
-
 		else if(coeffs[i] < 0){
 			/* includes conditions for coefficients which are negative. */ 
-
 			if(coeffs[i] != -1){
 				/* includes conditions for negative coefficients except for "-1". */
 
@@ -113,7 +98,6 @@ void write_polynomial3(double a0, double a1, double a2, double a3)
 				else{
 					printf("%gx^%d", coeffs[i],j);
 				}
-				
 			}
 			else{	/* condition prevents printing "-1.0x" instead of "-x". */
 				
@@ -123,7 +107,6 @@ void write_polynomial3(double a0, double a1, double a2, double a3)
 				else{
 					printf("-x^%d", j);
 				}
-				
 			}
 		}
 	}
@@ -185,14 +168,10 @@ void write_polynomial4(double a0, double a1, double a2, double a3, double a4)
 					else{
 						printf("+%gx^%d", coeffs[i],j);
 					}
-					
 				}
-
-
 			}
 
 			else{	/* condition prevents printing "1.0x" instead of "x". */				
-
 				if(j == 1){								
 					printf("+x");
 				}
@@ -205,13 +184,9 @@ void write_polynomial4(double a0, double a1, double a2, double a3, double a4)
 					else{
 						printf("+x^%d", j);
 					}
-					
 				}
-				
 			}
-
 		}
-
 
 		else if(coeffs[i] < 0){
 			/* includes conditions for coefficients which are negative. */
@@ -226,9 +201,7 @@ void write_polynomial4(double a0, double a1, double a2, double a3, double a4)
 				else{
 					printf("%gx^%d", coeffs[i],j);
 				}
-				
 			}
-
 			else{	/* condition prevents printing "-1.0x" instead of "-x". */
 
 				if(j == 1){
@@ -237,11 +210,8 @@ void write_polynomial4(double a0, double a1, double a2, double a3, double a4)
 				else{
 					printf("-x^%d", j);
 				}
-				
 			}
-
 		}
-
 	}
 	printf("\n");
 }

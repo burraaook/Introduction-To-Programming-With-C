@@ -3,9 +3,7 @@
 **
 ** The test/driver program for the homework.
 **
-** Author: Yakup Genc. (c) 2018-2021
-**
-** Revision: 2021.03.03.20.16
+** Author: Burak Kocausta
 ** 
 */
 

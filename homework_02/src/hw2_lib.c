@@ -9,24 +9,9 @@
 #include "hw2_lib.h"
 #include <math.h>
 
-int zeller_method(int day, int month, int year); /* Finds the day of given date, according to Zeller's Congruence. */
-
-void print_line(char border,char vertical,int num);	/* Prints line with given parameters, num is for how many time it prints */
-
-int day_check(int day, int month, int year);		/* Checks if the given date is valid date or not */
-
-int triangle_check(double a, double b, double c);	/* Function checks that triangle can be drawed with given values. */ 
-
-double two_decimal_digits(double num);  /* This function converts double number to double number which has at most 2 digits 
-									   after decimal with rounding before. */
-
-int digit_counter(unsigned int num); 	/* Function counts number of digits of given number. */
-
 int find_weekday_of_data(int day, int month, int year)
 {
     int day_returned; /* Monday -> 0 , ... , Sunday -> 7. */
-	
-
 
 	/* Precondition below! checking the dates validity.*/
 	if(day_check(day, month, year) == 1){
@@ -35,9 +20,7 @@ int find_weekday_of_data(int day, int month, int year)
 	}
 	/* Precondition above! checking the dates validity.*/
 
-
     day_returned = zeller_method(day, month, year); /* Day is calculated with Zeller's congruence */
-
     return day_returned; /* Function returns; 0 if it is Monday , ... , 7 if it is Sunday. */
 }
 

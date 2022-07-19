@@ -1,24 +1,14 @@
 /*
-** hw4_lib.c:
+** hw1_lib.c:
 **
 ** The source file implementing library functions.
 **
-** Author: Yakup Genc. (c) 2018-2021
-**
-** Revision: 2021.03.03.20.16
+** Author: Burak Kocausta
 ** 
 */
 
 #include <stdio.h>
 #include "hw1_lib.h"
-
-double third_degree_pol(double coeffs[], double x); /* calculates the P(x).(coefficients, x) */ 
-
-double fourth_degree_pol(double coeffs[], double x); /* calculates the P(x).(coefficients, x) */
-
-double find_pot_root(double xs, double ys, double xe, double ye); /* calculates the potential root between (xs,xe) */
-
-double tpzd_area(double xs, double ys, double xe, double ye); /* calculates trapezoid's area.(xstart,f(xstart),xend,f(xend)) */
 
 				/* (P(x) = (a0x^3 + a1x^2 + a2x^1 + a3x^0)(xs = xstart, xe = xend, delta = step size) */
 double integral3(double a0, double a1, double a2, double a3, double xs, double xe, double delta)
@@ -50,27 +40,19 @@ double integral3(double a0, double a1, double a2, double a3, double xs, double x
     	flag++;
     }
 
-    
     num = (xe-xs) / delta;
     sum = 0.0, temp = xs,temp2 = xs;
 
-   
 	for(i = 0; i < num; i++){
 
 		temp = temp + delta;
-		
 		sum = sum + tpzd_area(temp2, third_degree_pol(coeffs, temp2), temp, third_degree_pol(coeffs, temp));
-
 		temp2 = temp2 + delta;
 	} 
 
-	if(flag != 0){
+	if(flag != 0)
 		return -sum;
-	}
-	
-	else{
-		return sum;
-	}
+	return sum;
 }
 
 				/* (P(x) = (a0x^4 + a1x^3 + a2x^2 + a3x^1 + a4x^0)(xs = xstart, xe = xend, delta = step size) */
@@ -108,25 +90,16 @@ double integral4(double a0, double a1, double a2, double a3, double a4, double x
     num = (xe-xs) / delta;				
     sum = 0.0, temp = xs,temp2 = xs;
 
-    
-
 	for(i = 0; i < num; i++){
 
 		temp = temp + delta;
-		
 		sum = sum + tpzd_area(temp2, fourth_degree_pol(coeffs, temp2), temp, fourth_degree_pol(coeffs, temp));
-
 		temp2 = temp2 + delta;
 	} 
 
-	if(flag != 0){
+	if(flag != 0)
 		return -sum;
-	}
-
-	else{
-		return sum;
-	}
-	
+	return sum;
 }
 
 			/* (P(x) = (a0x^3 + a1x^2 + a2x^1 + a3x^0)(xs = xstart, xe = xend) */
@@ -136,9 +109,7 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 	/*Root is estimated with "FALSE POSITION METHOD(REGULA FALSI METHOD)".  */
 	/*-------------------------------------------------------------------   */
 
-
     double coeffs[10];		/*  array of coefficents declared. */
-
 
     double pot_root,pot_root2,pot_root3,PRECISION; 	/* these declarations are explained below.   */
     int COUNTER;
@@ -147,8 +118,6 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
     coeffs[1] = a1;
     coeffs[2] = a2;
     coeffs[3] = a3;
-
-
     /* Conditions below checks some of the preconditions for this method, before the essential algorithm starts.*/
 /* -------------------------------------------------------------------------------------------------------------------   */
 	if(third_degree_pol(coeffs, xs) * third_degree_pol(coeffs, xe)  > 0){
@@ -163,27 +132,16 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 		if(third_degree_pol(coeffs, xs) == 0){
 
 			if(third_degree_pol(coeffs, xe) == 0){
-
 				printf("%f and %f are roots.\n",xe,xs);
 				return xe;
-
 			}
-			else{
-
-				return xe;
-			}
-
+			return xe;
 		}
-
-		else{
-			return xs;
-		}
-
+		return xs;
 	}
 /* ------------------------------------------------------------------------------------------------------------------- */
 	/* Conditions above checks some of the preconditions for this method, before the essential algorithm starts. */
 
-	
 	else{
 		
 		/* find_pot_root calculates the potential root. */
@@ -205,8 +163,6 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 
 		/* Main purpouse is continuously minimize the interval with find_pot_root formula. */
 		do{
-
-
 			if(third_degree_pol(coeffs, pot_root) * third_degree_pol(coeffs, pot_root2) < 0){
 				/* Checking if there are any root between pot_root and pot_root2. */
 
@@ -215,13 +171,11 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 	
 				if(third_degree_pol(coeffs, pot_root3) * third_degree_pol(coeffs, pot_root2) < 0){
 					/* Checking if there are any root between pot_root3 and pot_root. */
-
 					pot_root = pot_root3;	/* There is no use of pot_root's old value, so we assign pot_root3's value to it. */
 					
 				}
 				else{
 					pot_root2 = pot_root3; /* There is no use of pot_root2's old value, so we assign pot_root3's value to it. */
-					
 				}
 			}
 			else if(third_degree_pol(coeffs, pot_root) * third_degree_pol(coeffs, pot_root3) < 0){
@@ -232,14 +186,10 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 
 				if(third_degree_pol(coeffs, pot_root2) * third_degree_pol(coeffs, pot_root3) < 0){
 					/* Checking if there are any root between pot_root2 and pot_root3. */
-				
 					pot_root = pot_root2; /* There is no use of pot_root's old value, so we assign pot_root2's value to it. */
-						
 				}
 				else{
-					
 					pot_root3 = pot_root2; /* There is no use of pot_root3's old value, so we assign pot_root2's value to it. */
-				
 				}
 			}
 
@@ -247,11 +197,9 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 			
 			/* ---------------------------CHECKING THE FIRST STOPPING CRITERIA----------------------------------- */
 			if(third_degree_pol(coeffs, pot_root2) < PRECISION && third_degree_pol(coeffs, pot_root2) > -PRECISION ){
-	
 				return pot_root2;
 			}
 			if(third_degree_pol(coeffs, pot_root3) < PRECISION && third_degree_pol(coeffs, pot_root3) > -PRECISION){
-				
 				return pot_root3;
 			}
 			/* ---------------------------CHECKING THE FIRST STOPPING CRITERIA----------------------------------- */
@@ -261,14 +209,9 @@ double root3(double a0, double a1, double a2, double a3, double xs, double xe)
 
 		/* pot_root2 or pot_root3 will be definitely change after the loop and achieve the optimum precision.
 		Condition checks which one it is.*/ 
-		if(pot_root2 < xe){
-			
+		if(pot_root2 < xe)
 			return pot_root2;
-		}
-		else{
-			
-			return pot_root3;
-		}
+		return pot_root3;	
 	}
 }
 
@@ -285,7 +228,6 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
     double pot_root,pot_root2,pot_root3,PRECISION; 	/* these declarations are explained below.   */
     
     int COUNTER;
-
 
     coeffs[0] = a0;
     coeffs[1] = a1;
@@ -311,22 +253,14 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
 				printf("%f and %f are roots.\n",xe,xs);
 				return xe;
 			}
-			else{
-				return xe;
-			}
+			return xe;
 		}
-
-		else{
-
-			return xs;
-		}
-
+		return xs;
 	}
 	/*------------------------------------------------------------------------------------------------------------------- */
 	/* Conditions above checks some of the preconditions for this method, before the essential algorithm starts. */
 
 	else{
-		
 				/*find_pot_root calculates the potential root. */
 		pot_root = find_pot_root(xs, fourth_degree_pol(coeffs, xs), xe, fourth_degree_pol(coeffs, xe));
 		
@@ -358,9 +292,7 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
 						
 				}
 				else{
-
-					pot_root2 = pot_root3;	/* There is no use of pot_root2's old value, so we assign pot_root3's value to it. */
-						
+					pot_root2 = pot_root3;	/* There is no use of pot_root2's old value, so we assign pot_root3's value to it. */		
 				}
 			}
 			else if(fourth_degree_pol(coeffs, pot_root) * fourth_degree_pol(coeffs, pot_root3) < 0){
@@ -375,14 +307,9 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
 						
 				}
 				else{
-
 					pot_root3 = pot_root2;	/* There is no use of pot_root3's old value, so we assign pot_root2's value to it. */
-			
 				}
 			}
-
-			
-			
 			/* ---------------------------CHECKING THE FIRST STOPPING CRITERIA-------------------------------------- */
 			if(fourth_degree_pol(coeffs, pot_root2) < PRECISION && fourth_degree_pol(coeffs, pot_root2) > -PRECISION ){
 	
@@ -400,14 +327,10 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
 
 		/* pot_root2 or pot_root3 will be definitely change after the loop and achieve the optimum precision.
 		Condition checks which one it is.*/ 
-		if(pot_root2 < xe){
-			
+		if(pot_root2 < xe)
 			return pot_root2;
-		}
-		else{
-			
-			return pot_root3;
-		}
+
+		return pot_root3;
 	}
 }
 /* ------------------------ FUNCTIONS USED----------------------------------------------------- */
@@ -415,12 +338,10 @@ double root4(double a0, double a1, double a2, double a3, double a4, double xs, d
 double third_degree_pol(double coeffs[], double x){ /* Function returns the third degree polynom's value. */
 													/* coeffs are (a0,a1,a2,a3), x is input. */
 													/* P(x) = a0x^3 + a1x^2 + a2x^1 + a3 */  
-
 	double sum;
 
 	/* P(x) = ((a0*x + a1)*x + a2)*x) + a3 */ /* it is written like this to avoid overflow */
 	sum = ((coeffs[0]*x + coeffs[1])*x + coeffs[2])*x + coeffs[3];
-
 	return sum;
 }
 
@@ -431,30 +352,22 @@ double fourth_degree_pol(double coeffs[], double x){ /* Function returns the fou
 
 	/* P(x) = (((a0*x + a1)*x + a2)*x + a3)*x + a4 */ /* it is written like this to avoid overflow */ 
 	sum = (((coeffs[0]*x + coeffs[1])*x + coeffs[2])*x + coeffs[3])*x + coeffs[4];
-
 	return sum;
 }
 
 double find_pot_root(double xs, double ys, double xe, double ye){ /* function returns a potential root between two interval. */
 																  /* xs = xstart, ys = f(xstart), xe = xend, ye = f(end) */
-
 	double pot_root;
-
 	/* pot_root = [xstart*f(xend) - xend*f(xstart)] / (f(xend) - f(xstart)) */
-
 	pot_root = (xs * ye - xe * ys) / (ye - ys);
-
 	return pot_root;
 }
 
 double tpzd_area(double xs, double ys, double xe, double ye){ /* function returns are of a trapezoid. */
 															  /* xs = xstart, ys = f(xstart), xe = xend, ye = f(end) */
 	double area;
-	
 	/* area = (1/2) * (xend - xstart) * (f(xstart) + f(xend)) */
 	area = (0.5)*(xe - xs)*(ys + ye);
-	
 	return area;
-
 }
 /* ------------------------- FUNCTIONS USED----------------------------------------------------- */

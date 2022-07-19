@@ -3,9 +3,7 @@
 **
 ** The source file implementing library functions.
 **
-** Author: Yakup Genc. (c) 2018-2021
-**
-** Revision: 2021.04.22.19.55
+** Author: Burak Kocausta
 ** 
 */
 
@@ -14,42 +12,6 @@
 
 
 #define WORDSIZE 30
-
-				/* HELPER FUNCTIONS FOR FIRST PART */				/* Helper functions are explained on their definiton. */
-
-void check_words(char line[],char *words[WORDSIZE],int num);
-int wordlen(char *str);
-void search_word(char *word, char line[],int length);
-char* extract_word(char *line,int length,char *word);
-int compare_words(char *word1,char *word2);
-void remove_word(char *line,int length);
-/* ==================================== */
-
-				/* HELPER FUNCTIONS FOR SECOND PART */
-
-int scan_move(move_type *move,cell_type *player);
-int find_current_loc(cell_type maze[][8], cell_type player, int* i, int* j);
-void print_8x8_maze(cell_type maze[][8], int row, int column);
-int move_to_left(cell_type maze[][8], int i,int j);
-int move_to_right(cell_type maze[][8], int i, int j);
-int move_to_up(cell_type maze[][8], int i, int j);
-int move_to_down(cell_type maze[][8], int i, int j);
-/* ==================================== */
-
-				/* HELPER FUNCTIONS FOR THIRD PART */
-
-void insert_disk(int *startp,int *endp,int *auxp,int n,char peg1,char peg2,int total_disk);
-void display_disk(int *startp,int *endp,int *auxp,int total_disk,int step);
-void display_head(int total_disk,int step);
-void print_above_num(int num,int total_disk);
-void visualized_hanoi(char start_peg, char end_peg, char aux_peg, int n,int *startp,int *auxp,int *endp,int total_disk,int* step);				  
-void pop(int *stack,int n);
-void push(int *stack,int n,int total_disk);
-void print_disk(int n);
-void print_stars(int n);
-void print_line(int num,char ch);
-void print_num_line(int num,int total_disk);
-/* ==================================== */
 
 /* 
 *	Function is a recursive function which reads one line at a time on input.txt and deletes wanted word from that line,
