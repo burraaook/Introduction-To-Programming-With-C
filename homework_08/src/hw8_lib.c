@@ -10,9 +10,6 @@
 #include <stdio.h>
 #include "hw8_lib.h"
 
-
-#define WORDSIZE 30
-
 /* 
 *	Function is a recursive function which reads one line at a time on input.txt and deletes wanted word from that line,
 *	It prints edited line to output.txt file. 
